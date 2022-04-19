@@ -131,7 +131,7 @@ export function CarDetails() {
             ))
           }
         </Accessories>
-        <About> {car.about} </About>
+        <About> {car.about} {car.about} {car.about} {car.about} {car.about} </About>
       </Animated.ScrollView>
       <Footer>
         <Button title="Escolha período de aluguel" color={theme.colors.main} onPress={handleConfirmRental} />

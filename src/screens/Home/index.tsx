@@ -13,11 +13,11 @@ import Animated, {
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
+import { LoadAnimation } from '../../components/LoadAnimation';
 import { api } from '../../services/api';
 import { CarDTO } from '../../dtos/CarDTO';
 import Logo from '../../assets/logo.svg'; //letra maiuscula para usar como componente
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
 import {
   Container,
   Header,
@@ -101,12 +101,15 @@ export function Home() {
             width={RFValue(108)}
             height={RFValue(12)}
           />
-          <TotalCars>
-            Total de {cars.length} carros
-          </TotalCars>
+          {
+            !loading &&
+            <TotalCars>
+              Total de {cars.length} carros
+            </TotalCars>
+          }
         </HeaderContent>
       </Header>
-      {loading ? <Load /> :
+      {loading ? <LoadAnimation /> :
         <CarList
           data={cars}
           keyExtractor={item => item.id}
