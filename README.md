@@ -1,4 +1,4 @@
-[](https://user-images.githubusercontent.com/47436367/164105721-413a8b78-c350-4411-b5ac-68811e902669.svg)
+<img src="https://user-images.githubusercontent.com/47436367/164105721-413a8b78-c350-4411-b5ac-68811e902669.svg">
 
 
 App de aluguel de carros de luxo, desenvolvido com React Native durante as aulas do Ignite da @Rocketseat.
