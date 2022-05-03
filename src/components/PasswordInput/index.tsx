@@ -13,13 +13,25 @@ import {
 
 //tipagem dos icones
 interface Props extends TextInputProps {
-  iconName: React.ComponentProps<typeof Feather>['name']
+  iconName: React.ComponentProps<typeof Feather>['name'];
+  value?: string;
 }
 
-export function PasswordInput({ iconName, ...rest }: Props) {
+export function PasswordInput({ iconName, value, ...rest }: Props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   const theme = useTheme();
+
+  function handleInputFocus() {
+    setIsFocused(true);
+  }
+
+  function handleInputBlur() {
+    setIsFocused(false);
+    setIsFilled(!!value); //tem conteúdo? True | não tem conteúdo? False
+  }
 
   function handlePasswordVisibilityChange() {
     setIsPasswordVisible(prevState => !prevState);
@@ -27,16 +39,19 @@ export function PasswordInput({ iconName, ...rest }: Props) {
 
   return (
     <Container>
-      <IconContainer>
+      <IconContainer isFocused={isFocused}>
         <Feather
           name={iconName}
-          color={theme.colors.text_detail}
+          color={(isFocused || isFilled) ? theme.colors.main : theme.colors.text_detail}
           size={24}
         />
       </IconContainer>
       <InputText
         {...rest}
+        isFocused={isFocused}
         secureTextEntry={isPasswordVisible}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
       <BorderlessButton onPress={handlePasswordVisibilityChange}>
         <IconContainer>
