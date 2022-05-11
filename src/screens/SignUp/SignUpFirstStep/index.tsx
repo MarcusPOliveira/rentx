@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import * as Yup from 'yup';
+
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../../hooks/auth';
 
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
@@ -23,6 +25,8 @@ export function SignUpFirstStep() {
   const [driverLicense, setDriverLicense] = useState('');
 
   const navigation = useNavigation();
+  const { user } = useAuth();
+  console.log('usuario autenticado: ', user);
 
   function handleBack() {
     navigation.goBack();
